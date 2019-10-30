@@ -53,4 +53,4 @@ EXPOSE 5000
 RUN echo $VIRTUAL_ENV
 
 # Commands to execute on docker run
-CMD [ "ls" ]
+CMD [ 'read -p "$*"' ]
