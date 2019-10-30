@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 
 LABEL MAINTAINER=<sudarshan.naidu@sts.in>
 
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 # Update Ubuntu Software repository
 RUN apt-get update
