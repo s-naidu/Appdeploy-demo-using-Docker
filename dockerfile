@@ -1,7 +1,5 @@
 #Download base image ubuntu 16.04
 FROM ubuntu:16.04
-
-LABEL MAINTAINER=<sudarshan.naidu@sts.in>
  
 # Update Software repository
 RUN apt-get update
@@ -33,6 +31,6 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
  
 # Configure Services and Port
 COPY start.sh /start.sh
-CMD["./start.sh"]
+CMD ["./start.sh"]
  
-EXPOSE 8081 443
+EXPOSE 80 443
