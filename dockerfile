@@ -1,2 +1,6 @@
-FROM httpd:2.4:latest 
-FROM httpd:2.4 COPY ./public-html/usr/local/apache2/htdocs/
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install nginx -y
+COPY index.html /var/www/html/
+EXPOSE 8084
+CMD ["nginx","-g","daemon off;"]
