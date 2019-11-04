@@ -24,23 +24,6 @@ INSTRUCTION arguments
 Copy
 INSTRUCTION is not case-sensitive, but the convention is to use UPPERCASE for its names.
 
-Below is the list with a short description of some of the most used Dockerfile instructions:
-
-ARG - This instruction allows you to define variables that can be passed at build-time. You can also set a default value.
-FROM - The base image for building a new image. This instruction must be the first non-comment instruction in the Dockerfile. The only exception from this rule is when you want to use a variable in the FROM argument. In this case, FROM can be preceded by one or more ARG instructions.
-LABEL - Used to add metadata to an image, such as description, version, author ..etc. You can specify more than one LABEL, and each LABEL instruction is a key-value pair.
-RUN - The commands specified in this instruction will be executed during the build process. Each RUN instruction creates a new layer on top of the current image.
-ADD - Used to copy files and directories from the specified source to the specified destination on the docker image. The source can be local files or directories or an URL. If the source is a local tar archive, then it is automatically unpacked into the Docker image.
-COPY - Similar to ADD but the source can be only a local file or directory.
-ENV - This instruction allows you to define an environment variable.
-CMD - Used to specify a command that will be executed when you run a container. You can use only one CMD instruction in your Dockerfile.
-ENTRYPOINT - Similar to CMD, this instruction defines what command will be executed when running a container.
-WORKDIR - This directive sets the current working directory for the RUN, CMD, ENTRYPOINT, COPY, and ADD instructions.
-USER - Set the username or UID to use when running any following RUN, CMD, ENTRYPOINT, COPY, and ADD instructions.
-VOLUME - Enables you to mount a host machine directory to the container.
-EXPOSE - Used to specify the port on which the container listens at runtime.
-To, exclude files and directories from being added to the image, create a .dockerignore file in the context directory. The syntax of the .dockerignore is similar to the one of the Git’s .gitignore file.
-
 Create a Dockerfile
 The most common scenario when creating Docker images is to pull an existing image from a registry (usually from Docker Hub) and specify the changes you want to make on the base image. The most commonly used base image when creating Docker images is Alpine because it is small and optimized to be run in RAM.
 
