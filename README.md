@@ -64,10 +64,7 @@ Removing intermediate container 0f4086bcb0fc
  ---> 2f6533727dcd
 Successfully built 2f6533727dcd
 Successfully tagged my_demo:latest
-administrator@micro-quickstart:~$ docker run -p 4000:80 my_demo:latest
-^Cadministrator@micro-quickstart:~$
-administrator@micro-quickstart:~$ docker run -p4001:80 my_demo:latest
-^Cadministrator@micro-quickstart:~$
+
 administrator@micro-quickstart:~$ docker run -d -p 8088:80 my_demo
 6215222f313860bd16cf9be9b6b4999a8df9939ec6d2ca111aa574dc9dc8e857
 
