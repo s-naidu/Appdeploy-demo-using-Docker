@@ -12,6 +12,7 @@ A Docker image is the blueprint of Docker containers that contains the applicati
 In this tutorial, we will explain what Dockerfile is, how to create one, and how to build a Docker image with Dockerfile.
 
 What is Dockerfile
+
 A Dockerfile is a text file that contains all the commands a user could run on the command line to create an image. It includes all the instructions needed by Docker to build the image.
 
 Docker images are made up of a series of filesystem layers representing instructions in the image’s Dockerfile that makes up an executable software application.
@@ -24,6 +25,7 @@ Copy
 INSTRUCTION is not case-sensitive, but the convention is to use UPPERCASE for its names.
 
 Create a Dockerfile
+
 The most common scenario when creating Docker images is to pull an existing image from a registry (usually from Docker Hub) and specify the changes you want to make on the base image. The most commonly used base image when creating Docker images is Alpine because it is small and optimized to be run in RAM.
 
 The Docker Hub is cloud-based registry service which among other functionalities is used for keeping the Docker images either in a public or private repository.
@@ -41,6 +43,7 @@ Copy
 Dockerfile
 
 Create Dockerfile with following content
+
 FROM ubuntu
 RUN apt-get update
 RUN apt-get install nginx -y
@@ -50,11 +53,13 @@ EXPOSE 80
 CMD ["nginx","-g","daemon off;"]
 
 Building the Image
+
 The next step is to build the image. To do so run the following command from the directory where the Dockerfile is located:
 
 docker build -t sample .
 
 output will be displayed as follows
+
  ---> Running in a5666f87a68a
 Removing intermediate container a5666f87a68a
  ---> e26263ec9c59
@@ -70,7 +75,7 @@ administrator@micro-quickstart:~$ docker run -d -p 8088:80 my_demo
 
 
 docker run -d -p884:80 --my_demo
-Copy
+
 The -d options tell Docker to run the container in detached mode, the -p 6379:6379 option will publish the port 6379 to the host machine and the --name redis option specifies the container name. The last argument linuxize/redis is the name of the image, which is used to run the container.
 
 When the container starts, use the following command to list all running containers:
