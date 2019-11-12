@@ -1,88 +1,75 @@
-Example Index html page
+Introduction to the Docker
+Docker is operating-system-level virtualization mainly intended for developers and sysadmins. Docker makes it easier to create and deploy applications in an isolated environment. 
+ Dockerfile is a script that contains collections of commands and instructions that will be automatically executed in sequence in the docker environment for building a new docker image.
+In this tutorial, I will show you how to create your own docker image with a dockerfile. I will explain the dockerfile script in detail to enable you to build your own dockerfile scripts.
+Prerequisite
+Ubuntu 16.04 as the host machine and docker base image.
+Root Privileges.
+Introduction to the Dockerfile Command
+A dockerfile is a script that contains a collection of dockerfile commands and operating system commands (ex: Linux commands). Before we create our first dockerfile, you should become familiar with the dockerfile command.
+ 
+ 
+ 
+Below are some dockerfile commands you must know:
+FROM: The base image for building a new image. This command must be on top of the dockerfile.
+RUN : Used to execute a command during the build process of the docker image.
+ADD : Copy a file from the host machine to the new docker image. There is an option to use a URL for the file, docker will then download that file to the destination directory.
+ENV : Define an environment variable.
+CMD: Used for executing commands when we build a new container from the docker image.
+ENTRYPOINT : Define the default command that will be executed when the container is running.
+WORKDIR: This is directive for CMD command to be executed.
+USER: Set the user or UID for the container created with the image.
+VOLUME: Enable access/linked directory between the container and the host machine.
+Now let's start to create our first dockerfile.
+ 
+Step 1 - Installing Docker
+Login to your server and update the software repository. (use Putty tool)
 
-Getting started
-Login to server
-Install docker
-Download Docker On UBUNTU
+Sudo apt-get update
+Install docker.io with this apt command:
+apt-get install docker.io
+When the installation is finished, start the docker service and enable it to start at boot time:
+systemctl start docker
+systemctl enable docker
+Docker has been installed and is running on the system.
+ 
+Step 2 - Create Dockerfile
+In this step, we will create a new directory for the dockerfile and define what we want to do with that dockerfile.
+Create a new directory and a new and empty dockerfile inside that directory.
+mkdir ~/deploy-demo
+cd deploy-demo/
+touch index.html
+Edit index.html
+Nano index.html add some content then save and exit
 
-How to Build Docker Images with Dockerfile
-
-A Docker image is the blueprint of Docker containers that contains the application and everything you need to run the application. A container is a runtime instance of an image.
-
-In this tutorial, we will explain what Dockerfile is, how to create one, and how to build a Docker image with Dockerfile.
-
-What is Dockerfile
-
-A Dockerfile is a text file that contains all the commands a user could run on the command line to create an image. It includes all the instructions needed by Docker to build the image.
-
-Docker images are made up of a series of filesystem layers representing instructions in the image’s Dockerfile that makes up an executable software application.
-
-The Docker file takes the following form:
-
-# Comment
-INSTRUCTION arguments
-Copy
-INSTRUCTION is not case-sensitive, but the convention is to use UPPERCASE for its names.
-
-Create a Dockerfile
-
-The most common scenario when creating Docker images is to pull an existing image from a registry (usually from Docker Hub) and specify the changes you want to make on the base image. The most commonly used base image when creating Docker images is Alpine because it is small and optimized to be run in RAM.
-
-The Docker Hub is cloud-based registry service which among other functionalities is used for keeping the Docker images either in a public or private repository.
-In this example, we will create a Docker image for the Redis server. We’ll use the latest ubuntu 18.04 as a base image.
-
-First, create a directory that will contain the Dockerfile and all the necessary files:
-
-mkdir ~/redis_docker
-Copy
-Navigate to the directory and create the following Dockerfile:
-
-cd ~/redis_docker
+ 
+Edit the 'Dockerfile' with nano:
+touch Dockerfile
 nano Dockerfile
-Copy
-Dockerfile
-
-Create Dockerfile with following content
-
+Here is the complete Dockerfile in one piece:
+#Download base image ubuntu 16.04
 FROM ubuntu
 RUN apt-get update
 RUN apt-get install nginx -y
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 COPY index.html /var/www/html/
 EXPOSE 80
-CMD ["nginx","-g","daemon off;"]
+CMD ["nginx","-g","daemon off;"]								
 
-Building the Image
+Step 3 - Build New Docker Image and Create New Container Based on it
+The Dockerfile and all required config files have been created, now we can build a new docker image based on Ubuntu 16.04 and our dockerfile with the docker command below:
+docker build -t nginx_image .
 
-The next step is to build the image. To do so run the following command from the directory where the Dockerfile is located:
+When the command completed successfully, we can check the new image 'nginx_image' with the docker command below:
+docker images
 
-docker build -t sample .
+Now run the new container with the command below:
+docker run -d -p884:80 -- my_test
+Then we can check that the new container with name my_test based on 'nginx_image' is running:
+docker ps
 
-output will be displayed as follows
+Note:
+--name my_test nginx_image = We create a new container with the name my_test, based on docker image 'nginx_images'.
+-p 884:80 = my_test container running on port 80 on the host machine.
+The new container based on the nginx_image is running without error.
 
- ---> Running in a5666f87a68a
-Removing intermediate container a5666f87a68a
- ---> e26263ec9c59
-Step 7/7 : CMD ["nginx","-g","daemon off;"]
- ---> Running in 0f4086bcb0fc
-Removing intermediate container 0f4086bcb0fc
- ---> 2f6533727dcd
-Successfully built 2f6533727dcd
-Successfully tagged my_demo:latest
-
-administrator@micro-quickstart:~$ docker run -d -p 8088:80 my_demo
-6215222f313860bd16cf9be9b6b4999a8df9939ec6d2ca111aa574dc9dc8e857
-
-
-docker run -d -p884:80 --my_demo
-
-The -d options tell Docker to run the container in detached mode, the -p 6379:6379 option will publish the port 6379 to the host machine and the --name redis option specifies the container name. The last argument linuxize/redis is the name of the image, which is used to run the container.
-
-When the container starts, use the following command to list all running containers:
-
-docker container ls
-administrator@micro-quickstart:~$ docker container ls
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
-6215222f3138        my_demo             "nginx -g 'daemon of…"   30 minutes ago      Up 30 minutes       0.0.0.0:8088->80/tcp   nervous_mayer
-
-To verify that everything works as it should use the host ip to connect to the docker container:
