@@ -24,25 +24,25 @@ VOLUME: Enable access/linked directory between the container and the host machin
 EXPOSE:Informs Docker that the container listens on the specified network port(s) at runtime.
 EXPOSE does not make the ports of the container accessible to the host.
 ```
-## Now let's start to create our first dockerfile.
+# Now let's start to create our first dockerfile.
  
-## Step 1 - Installing Docker
+# Step 1 - Installing Docker
 
 # Login to your server and update the software repository. (use Putty tool)
  
-## Sudo apt-get update
+# Sudo apt-get update
 
 # Install docker.io with this apt command:
 apt-get install docker.io
 
-## When the installation is finished, start the docker service and enable it to start at boot time:
+# When the installation is finished, start the docker service and enable it to start at boot time:
 
 systemctl start docker
 systemctl enable docker
 
 Docker has been installed and is running on the system.
  
-## Step 2 - Create Dockerfile
+# Step 2 - Create Dockerfile
 
 In this step, we will create a new directory for the dockerfile and define what we want to do with that dockerfile.
 Create a new directory and a new and empty dockerfile inside that directory.
@@ -71,7 +71,7 @@ COPY index.html /var/www/html/
 EXPOSE 80
 CMD ["nginx","-g","daemon off;"]								
 ```
-## Step 3 - Build New Docker Image and Create New Container Based on it
+# Step 3 - Build New Docker Image and Create New Container Based on it
 
 The Dockerfile and all required config files have been created, now we can build a new docker image based on Ubuntu 16.04 and our dockerfile with the docker command below:
 docker build -t nginx_image .
