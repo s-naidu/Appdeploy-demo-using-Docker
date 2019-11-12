@@ -44,7 +44,7 @@ systemctl enable docker
 
 Docker has been installed and is running on the system.
  
-# Step 2 - Create Dockerfile
+ Step 2 - Create Dockerfile
 
 In this step, we will create a new directory for the dockerfile and define what we want to do with that dockerfile.
 Create a new directory and a new and empty dockerfile inside that directory.
@@ -73,16 +73,16 @@ COPY index.html /var/www/html/
 EXPOSE 80
 CMD ["nginx","-g","daemon off;"]								
 ```
-# Step 3 - Build New Docker Image and Create New Container Based on it
+ Step 3 - Build New Docker Image and Create New Container Based on it
 
 The Dockerfile and all required config files have been created, now we can build a new docker image based on Ubuntu 16.04 and our dockerfile with the docker command below:
 docker build -t nginx_image .
 
-# When the command completed successfully, we can check the new image 'nginx_image' with the docker command below:
+ When the command completed successfully, we can check the new image 'nginx_image' with the docker command below:
 
 docker images
 
-# Now run the new container with the command below:
+ Now run the new container with the command below:
 
 docker run -d -p884:80 -- my_test
 Then we can check that the new container with name my_test based on 'nginx_image' is running:
