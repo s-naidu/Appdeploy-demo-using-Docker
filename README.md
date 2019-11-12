@@ -1,4 +1,5 @@
 Introduction to the Docker
+
 Docker is operating-system-level virtualization mainly intended for developers and sysadmins. Docker makes it easier to create and deploy applications in an isolated environment. 
  Dockerfile is a script that contains collections of commands and instructions that will be automatically executed in sequence in the docker environment for building a new docker image.
 In this tutorial, I will show you how to create your own docker image with a dockerfile. I will explain the dockerfile script in detail to enable you to build your own dockerfile scripts.
@@ -11,6 +12,7 @@ A dockerfile is a script that contains a collection of dockerfile commands and o
  
  
 Below are some dockerfile commands you must know:
+
 FROM: The base image for building a new image. This command must be on top of the dockerfile.
 RUN : Used to execute a command during the build process of the docker image.
 ADD : Copy a file from the host machine to the new docker image. There is an option to use a URL for the file, docker will then download that file to the destination directory.
@@ -24,7 +26,7 @@ Now let's start to create our first dockerfile.
  
 Step 1 - Installing Docker
 Login to your server and update the software repository. (use Putty tool)
-
+ 
 Sudo apt-get update
 Install docker.io with this apt command:
 apt-get install docker.io
