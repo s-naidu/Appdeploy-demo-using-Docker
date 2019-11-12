@@ -9,8 +9,7 @@ Root Privileges.
 Introduction to the Dockerfile Command
 A dockerfile is a script that contains a collection of dockerfile commands and operating system commands (ex: Linux commands). Before we create our first dockerfile, you should become familiar with the dockerfile command.
  
- 
- 
+  
 Below are some dockerfile commands you must know:
 
 FROM: The base image for building a new image. This command must be on top of the dockerfile.
@@ -25,9 +24,11 @@ VOLUME: Enable access/linked directory between the container and the host machin
 Now let's start to create our first dockerfile.
  
 Step 1 - Installing Docker
+
 Login to your server and update the software repository. (use Putty tool)
  
 Sudo apt-get update
+
 Install docker.io with this apt command:
 apt-get install docker.io
 When the installation is finished, start the docker service and enable it to start at boot time:
@@ -36,6 +37,7 @@ systemctl enable docker
 Docker has been installed and is running on the system.
  
 Step 2 - Create Dockerfile
+
 In this step, we will create a new directory for the dockerfile and define what we want to do with that dockerfile.
 Create a new directory and a new and empty dockerfile inside that directory.
 mkdir ~/deploy-demo
@@ -46,9 +48,13 @@ Nano index.html add some content then save and exit
 
  
 Edit the 'Dockerfile' with nano:
+
 touch Dockerfile
+
 nano Dockerfile
+
 Here is the complete Dockerfile in one piece:
+
 #Download base image ubuntu 16.04
 FROM ubuntu
 RUN apt-get update
@@ -66,6 +72,7 @@ When the command completed successfully, we can check the new image 'nginx_image
 docker images
 
 Now run the new container with the command below:
+
 docker run -d -p884:80 -- my_test
 Then we can check that the new container with name my_test based on 'nginx_image' is running:
 docker ps
