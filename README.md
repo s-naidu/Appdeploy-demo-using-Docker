@@ -24,18 +24,20 @@ VOLUME: Enable access/linked directory between the container and the host machin
 EXPOSE:Informs Docker that the container listens on the specified network port(s) at runtime.
 EXPOSE does not make the ports of the container accessible to the host.
 ```
-# Now let's start to create our first dockerfile.
+```
+ Now let's start to create our first dockerfile.
+ ```
+ ```
+ Step 1 - Installing Docker
+```
+ Login to your server and update the software repository. (use Putty tool)
  
-# Step 1 - Installing Docker
+ Sudo apt-get update
 
-# Login to your server and update the software repository. (use Putty tool)
- 
-# Sudo apt-get update
-
-# Install docker.io with this apt command:
+ Install docker.io with this apt command:
 apt-get install docker.io
 
-# When the installation is finished, start the docker service and enable it to start at boot time:
+ When the installation is finished, start the docker service and enable it to start at boot time:
 
 systemctl start docker
 systemctl enable docker
