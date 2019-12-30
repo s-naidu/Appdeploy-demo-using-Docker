@@ -94,4 +94,5 @@ Note:
 The new container based on the nginx_image is running without error.
 
 Document for in details :https://docs.google.com/document/d/19Mwj2FkFOAgpBPT7oXJJgj4qbYEShTAzarWeu91TJos/edit#heading=h.iskc0tu0zokz
+PPT slids :https://docs.google.com/presentation/d/1hKnZ1hmZ2tbSLOOh1dZJKDIoEFSgI1xzBoWn0fO2QzQ/edit
 
